@@ -270,7 +270,7 @@ docker-compose logs api
 
 - Processamento paralelo com Worker Pool
 - Até 10 pedidos processados simultaneamente
-- Multi-stage Docker build para imagens otimizadas (aproximadamente 20MB)
+- Multi-stage Docker build para imagens otimizadas
 
 ### Segurança
 
@@ -283,16 +283,6 @@ docker-compose logs api
 - Logs estruturados com Gin
 - Health check endpoint
 - Swagger para documentação e testes
-
-## Melhorias Futuras
-
-- Persistência de dados em banco de dados
-- Cache de resultados frequentes
-- Métricas e monitoramento com Prometheus
-- Testes unitários e de integração
-- CI/CD pipeline
-- Algoritmo 3D bin packing mais sofisticado
-- Suporte a restrições de peso
 
 ## Autor
 
