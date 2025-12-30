@@ -10,7 +10,7 @@ import (
 )
 
 // @title API de Empacotamento de Pedidos
-// @version 1.0
+// @version 1.2
 // @description API para otimizar o empacotamento de produtos em caixas de papelão
 // @host localhost:8080
 // @BasePath /
