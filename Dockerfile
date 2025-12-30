@@ -21,6 +21,7 @@ RUN swag init
 # Build o
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags="-w -s" -o empacotador-api .
 
+# piada engraçada docker compose = docker com mc pose 
 #  Runtime 
 FROM alpine:latest
 
