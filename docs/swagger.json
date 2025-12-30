@@ -1,0 +1,132 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API para otimizar o empacotamento de produtos em caixas de papelão",
+        "title": "API de Empacotamento de Pedidos",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/pack": {
+            "post": {
+                "description": "Recebe uma lista de pedidos e retorna o empacotamento otimizado",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Empacotamento"
+                ],
+                "summary": "Empacotar pedidos",
+                "parameters": [
+                    {
+                        "description": "Lista de pedidos",
+                        "name": "pedidos",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Order"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.PackingResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Box": {
+            "type": "object",
+            "properties": {
+                "altura": {
+                    "type": "number"
+                },
+                "comprimento": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "largura": {
+                    "type": "number"
+                },
+                "produtos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Product"
+                    }
+                }
+            }
+        },
+        "models.Order": {
+            "type": "object",
+            "properties": {
+                "pedido_id": {
+                    "type": "string"
+                },
+                "produtos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Product"
+                    }
+                }
+            }
+        },
+        "models.PackingResponse": {
+            "type": "object",
+            "properties": {
+                "caixas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Box"
+                    }
+                },
+                "pedido_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Product": {
+            "type": "object",
+            "properties": {
+                "altura": {
+                    "type": "number"
+                },
+                "comprimento": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "largura": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

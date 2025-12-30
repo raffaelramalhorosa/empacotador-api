@@ -1,0 +1,86 @@
+basePath: /
+definitions:
+  models.Box:
+    properties:
+      altura:
+        type: number
+      comprimento:
+        type: number
+      id:
+        type: integer
+      largura:
+        type: number
+      produtos:
+        items:
+          $ref: '#/definitions/models.Product'
+        type: array
+    type: object
+  models.Order:
+    properties:
+      pedido_id:
+        type: string
+      produtos:
+        items:
+          $ref: '#/definitions/models.Product'
+        type: array
+    type: object
+  models.PackingResponse:
+    properties:
+      caixas:
+        items:
+          $ref: '#/definitions/models.Box'
+        type: array
+      pedido_id:
+        type: string
+    type: object
+  models.Product:
+    properties:
+      altura:
+        type: number
+      comprimento:
+        type: number
+      id:
+        type: string
+      largura:
+        type: number
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API para otimizar o empacotamento de produtos em caixas de papelão
+  title: API de Empacotamento de Pedidos
+  version: "1.0"
+paths:
+  /api/pack:
+    post:
+      consumes:
+      - application/json
+      description: Recebe uma lista de pedidos e retorna o empacotamento otimizado
+      parameters:
+      - description: Lista de pedidos
+        in: body
+        name: pedidos
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/models.Order'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.PackingResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Empacotar pedidos
+      tags:
+      - Empacotamento
+swagger: "2.0"
